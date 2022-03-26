@@ -1,0 +1,35 @@
+{
+    "name": "perfect-code/module-product-media-uploader",
+    "description": "This module for Magento 2 helps to download an image from external URL for further save it as a product media gallery entry.",
+    "require": {
+        "php": "^7.4",
+        "magento/framework": "*",
+        "magento/module-catalog": "*",
+        "magento/module-config": "*",
+        "magento/magento-composer-installer": "*"
+    },
+    "suggest": {
+
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "PerfectCode\\ProductMediaUploader\\": ""
+        }
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "PerfectCode/ProductMediaUploader"
+            ]
+        ]
+    }
+}

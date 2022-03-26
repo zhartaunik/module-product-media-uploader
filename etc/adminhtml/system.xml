@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="media_import" translate="label comment" sortOrder="305" showInDefault="1">
+                <label>Product Media Import Settings</label>
+                <comment>This contains base settings to import product media images to be assigned on a product.</comment>
+                <field id="label" type="text" translate="label comment" sortOrder="10" canRestore="1" showInDefault="1">
+                    <label>Default Label</label>
+                    <comment>Admin Area / Product Edit Page / Image Detail Sidebar / Alt Text</comment>
+                </field>
+                <field id="position" type="text" translate="label" sortOrder="20" canRestore="1" showInDefault="1">
+                    <label>Default Position</label>
+                    <validate>validate-digits validate-zero-or-greater</validate>
+                </field>
+                <field id="disabled" type="select" translate="label" sortOrder="30" canRestore="1" showInDefault="1">
+                    <label>Disabled by default</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="types" type="multiselect" translate="label" sortOrder="40" canRestore="1" showInDefault="1">
+                    <label>Assigned image types</label>
+                    <source_model>PerfectCode\ProductMediaUploader\Model\Config\Source\MediaRoles</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <catalog>
+            <media_import>
+                <label>Default Label</label>
+                <position>10</position>
+                <disabled>0</disabled>
+                <types>image,small_image,thumbnail</types>
+            </media_import>
+        </catalog>
+    </default>
+</config>
