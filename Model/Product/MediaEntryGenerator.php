@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PerfectCode\ProductMediaUploader\Model\Product;
 
+use Laminas\Validator\Uri as UriValidator;
 use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterface;
 use Magento\Catalog\Api\Data\ProductAttributeMediaGalleryEntryInterfaceFactory;
 use Magento\Framework\Api\Data\ImageContentInterfaceFactory;
@@ -15,6 +16,7 @@ use Magento\Framework\Filesystem\Glob;
 use Magento\Framework\Filesystem\Io\File as IoFile;
 use PerfectCode\ProductMediaUploader\Api\MediaEntryGeneratorInterface;
 use PerfectCode\ProductMediaUploader\Helper\Config as ConfigHelper;
+use PerfectCode\ProductMediaUploader\Model\MediaImportException;
 
 class MediaEntryGenerator implements MediaEntryGeneratorInterface
 {
@@ -54,6 +56,11 @@ class MediaEntryGenerator implements MediaEntryGeneratorInterface
     private ConfigHelper $configHelper;
 
     /**
+     * @var UriValidator
+     */
+    private UriValidator $uriValidator;
+
+    /**
      * @param ImageContentInterfaceFactory $contentFactory
      * @param ProductAttributeMediaGalleryEntryInterfaceFactory $mediaEntryFactory
      * @param Glob $glob
@@ -69,7 +76,8 @@ class MediaEntryGenerator implements MediaEntryGeneratorInterface
         IoFile $ioFile,
         Filesystem $filesystem,
         DriverFile $driver,
-        ConfigHelper $configHelper
+        ConfigHelper $configHelper,
+        UriValidator $uriValidator
     ) {
         $this->contentFactory = $contentFactory;
         $this->mediaEntryFactory = $mediaEntryFactory;
@@ -78,6 +86,7 @@ class MediaEntryGenerator implements MediaEntryGeneratorInterface
         $this->filesystem = $filesystem;
         $this->driver = $driver;
         $this->configHelper = $configHelper;
+        $this->uriValidator = $uriValidator;
     }
 
     /**
@@ -87,9 +96,13 @@ class MediaEntryGenerator implements MediaEntryGeneratorInterface
      * @param string[] $data Additional data which can be used for image title generation.
      * @return ProductAttributeMediaGalleryEntryInterface
      * @throws FileSystemException
+     * @throws MediaImportException
      */
     public function generate(string $imageUrl, array $data = []): ProductAttributeMediaGalleryEntryInterface
     {
+        if (!$this->uriValidator->isValid($imageUrl)) {
+            throw new MediaImportException(__('Url `%1` has invalid format, data: %2', $imageUrl, json_encode($data)));
+        }
         $imageUrl = $this->removeQueryString($imageUrl);
         $imageAbsolutePath = $this->getMediaFile($imageUrl, $data);
 

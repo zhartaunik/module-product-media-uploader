@@ -3,6 +3,8 @@
     "description": "This module for Magento 2 helps to download an image from external URL for further save it as a product media gallery entry.",
     "require": {
         "php": "^7.4",
+        "ext-json": "*",
+        "laminas/laminas-validator": "*",
         "magento/framework": "*",
         "magento/module-catalog": "*",
         "magento/module-config": "*",
@@ -12,7 +14,7 @@
 
     },
     "type": "magento2-module",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "license": [
         "GPL-3.0"
     ],
