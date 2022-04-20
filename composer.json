@@ -2,7 +2,7 @@
     "name": "perfect-code/module-product-media-uploader",
     "description": "This module for Magento 2 helps to download an image from external URL for further save it as a product media gallery entry.",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8",
         "ext-json": "*",
         "laminas/laminas-validator": "*",
         "magento/framework": "*",
@@ -14,7 +14,7 @@
 
     },
     "type": "magento2-module",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "license": [
         "GPL-3.0"
     ],
