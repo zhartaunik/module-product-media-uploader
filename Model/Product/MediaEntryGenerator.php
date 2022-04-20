@@ -179,10 +179,10 @@ class MediaEntryGenerator implements MediaEntryGeneratorInterface
         $mediaDirPath = $this->filesystem->getDirectoryRead(AppDirectoryList::MEDIA)->getAbsolutePath();
         $productImages = $this->glob->glob(
             $mediaDirPath
-            . 'catalog' . DS
-            . 'product' . DS
-            . $imageName[0] . DS
-            . $imageName[1] . DS
+            . 'catalog' . DIRECTORY_SEPARATOR
+            . 'product' . DIRECTORY_SEPARATOR
+            . $imageName[0] . DIRECTORY_SEPARATOR
+            . $imageName[1] . DIRECTORY_SEPARATOR
             . $pathInfo['filename'] . '*'
         );
 
